@@ -19,7 +19,7 @@ public class IndexController {
 
         ModelAndView modelAndView = new ModelAndView();
         model.put("index", "ancc");
-        /*modelAndView.setViewName("indexPage");*/
+        modelAndView.setViewName("indexPage");
         return "indexPage";
     }
 

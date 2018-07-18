@@ -36,6 +36,18 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+        <!--
+            热部署
+            页面方面通过设置spring.thymeleaf.cache=false关闭缓存来实现
+
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
@@ -44,16 +56,17 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-
+		<!-- freemarker 模板-->
 		<dependency>
-			<groupId>com.bj58.daojia</groupId>
-			<artifactId>jar-matching</artifactId>
-			<version>0.0.4-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<build>
