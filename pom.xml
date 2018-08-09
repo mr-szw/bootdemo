@@ -25,6 +25,7 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -36,20 +37,22 @@
 			<scope>test</scope>
 		</dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-        <!--
-            热部署
-            页面方面通过设置spring.thymeleaf.cache=false关闭缓存来实现
-
-        -->
+        <!--   热部署  页面方面通过设置spring.thymeleaf.cache=false关闭缓存来实现    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <version>2.0.3.RELEASE</version>
         </dependency>
 
+		<!-- spring-boot-starter-data-redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>2.0.3.RELEASE</version>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+
+		<!-- javax.servlet/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -66,6 +69,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+
+		<!-- caffeine -->
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+
 
 	</dependencies>
 
