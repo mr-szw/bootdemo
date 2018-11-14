@@ -1,0 +1,115 @@
+#公共配置
+server:
+    port: 80
+    tomcat:
+      uri-encoding: UTF-8
+spring:
+  #激活哪一个环境的配置文件
+  profiles:
+    active: dev
+  #视图配置
+  mvc:
+    static-path-pattern: /static/**
+  #网络请求配置
+  http:
+      encoding:
+        force: true
+        charset: UTF-8
+        enabled: true
+  #文件上传配置
+  servlet:
+      multipart:
+        enabled: true
+        max-file-size: 10
+        max-request-size: 20
+
+
+
+  #模板引擎配置
+  freemarker:
+      template-loader-path: classpath:/templates/
+      prefer-file-system-access: false
+      settings:
+        template_update_delay: 0
+        classic_compatible: true
+        number_format: 0.######
+        template_exception_handler: ignore
+      request-context-attribute: rc
+      charset: UTF-8
+  #连接池配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      validationQuery: SELECT 1
+      initialSize: 10
+      minIdle: 10
+      maxActive: 200
+      minEvictableIdleTimeMillis: 180000
+      testOnBorrow: false
+      testWhileIdle: true
+      removeAbandoned: true
+      removeAbandonedTimeout: 1800
+      logAbandoned: true
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 100
+
+  #缓存配置
+  cache:
+      type: redis
+      cache-names: boot-demo
+
+  #热部署 重启 #热部署扫包位置
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+
+  #热部署
+#日志
+logging:
+  config: classpath:log/logback.xml
+  path: /home/log/mysiteforme
+
+
+---
+#开发环境配置
+server:
+  #端口
+  port: 8080
+spring:
+  profiles: dev
+  #redis配置
+  redis:
+      database: 3
+      host: sentinel2.redistp.djdns.cn
+      port: 28100
+      password:      # 密码（默认为空）
+      #timeout: 6001  # 连接超时时长（毫秒）
+
+      jedis:
+        pool:
+          max-active: 1000 # 连接池最大连接数（使用负值表示没有限制）
+          #max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-idle: 10      # 连接池中的最大空闲连接
+          min-idle: 5       # 连接池中的最小空闲连接
+
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://10.37.18.109:3606/dbdj_house_jzupadmin?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true
+    username: daojia_root
+    password: aaa111
+
+
+
+
+
+
+
+
+
+
+
+
+
+

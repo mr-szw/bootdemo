@@ -1,6 +1,5 @@
 package com.dawei.test.bootdemo.config;
 
-import com.dawei.test.bootdemo.intercecptors.MyInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,7 +14,7 @@ public class MyMvcConfig  implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*/**");
+        //registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*/**");
     }
 
 }

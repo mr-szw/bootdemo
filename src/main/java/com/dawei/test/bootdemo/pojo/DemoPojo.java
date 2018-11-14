@@ -9,6 +9,7 @@ import java.util.Set;
 /**
  * @author by Dawei on  2018/7/19
  */
+
 @Component
 public class DemoPojo implements Serializable {
 
