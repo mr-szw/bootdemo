@@ -78,7 +78,7 @@
             $.post(data.form.action, data.field, function(res) {
                 layer.close(loadIndex);
                 if(res.success){
-                    location.href="${base}/"+res.data.url;
+                    location.href="${base}/"+ res.data.url;
                 }else{
                     layer.msg(res.message);
                     $("#mycode").click();

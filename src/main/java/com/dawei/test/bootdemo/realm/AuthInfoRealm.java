@@ -44,10 +44,10 @@ public class AuthInfoRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
         //获取用户信息 包含：[角色列表]、[菜单目录标识]
-        UserInfo userInfo = userInfoService.findUserByLoginName(shiroUser.getloginName());
+        UserInfo userInfo = userInfoService.findUserByLoginName(shiroUser.getLoginName());
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Set<RoleInfo> roleSet = userInfo.getRoleSet();
-        Set<String> roleNames = roleSet.parallelStream().filter(role -> StringUtils.isNotBlank(role.getRoleName())).map(RoleInfo::getRoleName).collect(Collectors.toSet());
+        Set<String> roleNames = roleSet.parallelStream().filter(roleInfo -> StringUtils.isNotBlank(roleInfo.getRoleName())).map(RoleInfo::getRoleName).collect(Collectors.toSet());
 
         Set<MenuInfo> menuInfoSet = userInfo.getMenuInfoSet();
         Set<String> permissions = menuInfoSet.parallelStream().filter(menuInfo -> StringUtils.isNotBlank(menuInfo.getPermission())).map(MenuInfo::getPermission).collect(Collectors.toSet());
@@ -75,15 +75,13 @@ public class AuthInfoRealm extends AuthorizingRealm {
             throw new LockedAccountException(); //帐号锁定
         }
 
-
-        String saltStr = userInfo.getSalt();
-        byte[] salt = EncodesUtil.decodeHex(userInfo.getSalt());
+        byte[] byteArray = EncodesUtil.decodeHex(userInfo.getSalt());
         ShiroUser shiroUser = new ShiroUser(userInfo.getId(), userInfo.getLoginName(), userInfo.getNickName(), userInfo.getIcon());
 
         return new SimpleAuthenticationInfo(
                 shiroUser,
                 userInfo.getPassword(),
-                ByteSource.Util.bytes(salt),
+                ByteSource.Util.bytes(byteArray),
                 getName()
         );
     }
@@ -121,6 +119,8 @@ public class AuthInfoRealm extends AuthorizingRealm {
         public String nickName;
         public String icon;
 
+
+
         public ShiroUser(Long id, String loginName, String nickName, String icon) {
             this.id = id;
             this.loginName = loginName;
@@ -128,22 +128,23 @@ public class AuthInfoRealm extends AuthorizingRealm {
             this.icon = icon;
         }
 
-        public String getloginName() {
+        public String getLoginName() {
             return loginName;
+        }
+
+
+        public Long getId() {
+            return id;
         }
 
         public String getNickName() {
             return nickName;
         }
 
+
         public String getIcon() {
             return icon;
         }
-
-        public Long getId() {
-            return id;
-        }
-
 
         /**
          * 本函数输出将作为默认的<shiro:principal/>输出.
@@ -152,7 +153,6 @@ public class AuthInfoRealm extends AuthorizingRealm {
         public String toString() {
             return nickName;
         }
-
         /**
          * 重载hashCode,只计算loginName;
          */

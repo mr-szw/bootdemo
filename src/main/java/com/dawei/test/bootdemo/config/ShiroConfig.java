@@ -65,7 +65,7 @@ public class ShiroConfig {
      * @param authInfoRealm 权限池
      */
     @Bean
-    public SecurityManager securityManager(@Qualifier("authRealm") AuthInfoRealm authInfoRealm) {
+    public SecurityManager securityManager(@Qualifier("authInfoRealm") AuthInfoRealm authInfoRealm) {
         logger.info("- - - - - - -shiro开始加载- - - - - - ");
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(authInfoRealm);
@@ -83,7 +83,7 @@ public class ShiroConfig {
      * @param authInfoRealm 权限Realm
      */
     @Bean(name = "shiroFilterFactoryBean")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("authRealm") AuthInfoRealm authInfoRealm) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("authInfoRealm") AuthInfoRealm authInfoRealm) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager(authInfoRealm));
 

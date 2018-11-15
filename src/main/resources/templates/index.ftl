@@ -17,9 +17,9 @@
     <!-- 网页作者 -->
     <meta name="author" content="${site.author}"/>
     <link rel="icon" href="${site.logo}">
-    <link rel="stylesheet" href="${base}/static/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
-    <link rel="stylesheet" href="${base}/static/css/main.css" media="all"/>
+    <link rel="stylesheet" href="${base}/static/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="${base}/static/css/main.css" media="all" />
 </head>
 <body class="main_body">
 <div class="layui-layout layui-layout-admin">
@@ -44,26 +44,7 @@
             <!-- 天气信息 -->
             <div class="weather" pc>
                 <div id="tp-weather-widget"></div>
-                <script>(function (T, h, i, n, k, P, a, g, e) {
-                    g = function () {
-                        P = h.createElement(i);
-                        a = h.getElementsByTagName(i)[0];
-                        P.src = k;
-                        P.charset = "utf-8";
-                        P.async = 1;
-                        a.parentNode.insertBefore(P, a)
-                    };
-                    T["ThinkPageWeatherWidgetObject"] = n;
-                    T[n] || (T[n] = function () {
-                        (T[n].q = T[n].q || []).push(arguments)
-                    });
-                    T[n].l = +new Date();
-                    if (T.attachEvent) {
-                        T.attachEvent("onload", g)
-                    } else {
-                        T.addEventListener("load", g, false)
-                    }
-                }(window, document, "script", "tpwidget", "//widget.seniverse.com/widget/chameleon.js"))</script>
+                <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
                 <script>tpwidget("init", {
                     "flavor": "slim",
                     "location": "WX4FBXXFKE4F",
@@ -86,8 +67,7 @@
             <#--<a href="javascript:"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>-->
             <#--</li>-->
                 <li class="layui-nav-item" mobile>
-                    <a href="javascript:" class="mobileAddTab" data-url="page/user/changePwd.html"><i
-                            class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>设置</cite></a>
+                    <a href="javascript:" class="mobileAddTab" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>设置</cite></a>
                 </li>
                 <li class="layui-nav-item" mobile>
                     <a href="${base}/systemLogout" class="signOut"><i class="iconfont icon-loginout"></i> 退出</a>
@@ -97,19 +77,14 @@
             <#--</li>-->
                 <li class="layui-nav-item" pc>
                     <a href="javascript:">
-                        <img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>"
-                             class="layui-circle" width="35" height="35">
+                        <img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>" class="layui-circle" width="35" height="35">
                         <cite><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:" data-url="${base}/admin/system/user/userinfo"><i
-                                class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:" data-url="${base}/admin/system/user/changePassword"><i
-                                class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:" class="changeSkin"><i
-                                class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd>
-                        <dd><a href="${base}/systemLogout" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a>
-                        </dd>
+                        <dd><a href="javascript:" data-url="${base}/admin/system/user/userinfo"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+                        <dd><a href="javascript:" data-url="${base}/admin/system/user/changePassword"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+                        <dd><a href="javascript:" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd>
+                        <dd><a href="${base}/systemLogout" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
             </ul>
@@ -118,11 +93,8 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像"><img
-                    src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>"></a>
-            <p>你好！<span
-                    class="userName"><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></span>,
-                欢迎登录</p>
+            <a class="img" title="我的头像" ><img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>"></a>
+            <p>你好！<span class="userName"><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></span>, 欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll"></div>
     </div>
@@ -136,12 +108,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:"><i class="iconfont icon-caozuo"></i> 页面操作</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i>
-                            刷新当前</a></dd>
-                        <dd><a href="javascript:" class="closePageOther"><i class="iconfont icon-prohibit"></i> 关闭其他</a>
-                        </dd>
-                        <dd><a href="javascript:" class="closePageAll"><i class="iconfont icon-guanbi"></i> 关闭全部</a>
-                        </dd>
+                        <dd><a href="javascript:" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
+                        <dd><a href="javascript:" class="closePageOther"><i class="iconfont icon-prohibit"></i> 关闭其他</a></dd>
+                        <dd><a href="javascript:" class="closePageAll"><i class="iconfont icon-guanbi"></i> 关闭全部</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -154,8 +123,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p>Copyright © 2018孤独的旅行家 Design By 马哥 <a href="http://www.miibeian.gov.cn" target="_blank">苏ICP备17063650号 </a>
-        </p>
+        <p>Copyright © 2018孤独的旅行家  Design By 马哥 <a href="http://www.miibeian.gov.cn" target="_blank">苏ICP备17063650号 </a></p>
     </div>
 </div>
 <script>

@@ -82,8 +82,8 @@ spring:
   #redis配置
   redis:
       database: 3
-      host: sentinel2.redistp.djdns.cn
-      port: 28100
+      host: 10.37.18.94
+      port: 18300
       password:      # 密码（默认为空）
       #timeout: 6001  # 连接超时时长（毫秒）
 

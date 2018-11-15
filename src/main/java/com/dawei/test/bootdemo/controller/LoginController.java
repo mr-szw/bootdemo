@@ -53,8 +53,10 @@ public class LoginController {
         String requestURI = request.getRequestURI();
         logger.info("来源路径>>>>>>> {}", requestURI);
         Subject subject = SecurityUtils.getSubject();
-        logger.info("請求实例------{}", JSON.toJSONString(subject));
         if(subject.isAuthenticated()){
+            if(requestURI.contains("index")) {
+                requestURI = "index";
+            }
             return "redirect:" + requestURI;
         }else {
             return "login";
@@ -119,7 +121,7 @@ public class LoginController {
                 errorMsg = "您没有得到相应的授权！";
             }
         if(StringUtils.isBlank(errorMsg)){
-            return RestResponse.success("登录成功").setData(errorMsg);
+            return RestResponse.success("登录成功").setData(resultMap);
         }else{
             return RestResponse.failure(errorMsg);
         }
@@ -146,6 +148,17 @@ public class LoginController {
         ImageIO.write(bufferedImage, "JPEG", response.getOutputStream());
     }
 
+    /**
+     * 登陆成功转到首页
+     */
+    @GetMapping(value = "/index")
+    public String toIndex() {
+        return "index";
+    }
+
+    /**
+     * 登出
+     */
     @GetMapping("systemLogout")
     public String logOut(){
         logger.info("登出系统————");
