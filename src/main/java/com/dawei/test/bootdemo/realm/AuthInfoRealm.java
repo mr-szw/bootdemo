@@ -8,6 +8,7 @@ import com.dawei.test.bootdemo.service.UserInfoService;
 import com.dawei.test.bootdemo.utils.EncodesUtil;
 import com.google.common.base.Objects;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -77,12 +78,11 @@ public class AuthInfoRealm extends AuthorizingRealm {
 
         byte[] byteArray = EncodesUtil.decodeHex(userInfo.getSalt());
         ShiroUser shiroUser = new ShiroUser(userInfo.getId(), userInfo.getLoginName(), userInfo.getNickName(), userInfo.getIcon());
-
         return new SimpleAuthenticationInfo(
                 shiroUser,
-                userInfo.getPassword(),
+                userInfo.getPassword(),     //密码
                 ByteSource.Util.bytes(byteArray),
-                getName()
+                getName()  //realm name
         );
     }
 
@@ -119,8 +119,6 @@ public class AuthInfoRealm extends AuthorizingRealm {
         public String nickName;
         public String icon;
 
-
-
         public ShiroUser(Long id, String loginName, String nickName, String icon) {
             this.id = id;
             this.loginName = loginName;
@@ -131,17 +129,12 @@ public class AuthInfoRealm extends AuthorizingRealm {
         public String getLoginName() {
             return loginName;
         }
-
-
         public Long getId() {
             return id;
         }
-
         public String getNickName() {
             return nickName;
         }
-
-
         public String getIcon() {
             return icon;
         }

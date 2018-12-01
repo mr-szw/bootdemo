@@ -4,11 +4,15 @@ import com.dawei.test.bootdemo.constants.ConstantsConfig;
 import com.dawei.test.bootdemo.filter.CaptchaFormAuthenticationFilter;
 import com.dawei.test.bootdemo.realm.AuthInfoRealm;
 import com.google.common.collect.Maps;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.slf4j.Logger;
@@ -69,9 +73,9 @@ public class ShiroConfig {
         logger.info("- - - - - - -shiro开始加载- - - - - - ");
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(authInfoRealm);
-        //defaultWebSecurityManager.setRememberMeManager(rememberMeManager());
+        defaultWebSecurityManager.setRememberMeManager(cookieRememberMeManager());
         defaultWebSecurityManager.setSessionManager(webSessionManager());
-        //defaultWebSecurityManager.setCacheManager(cacheManager());
+        defaultWebSecurityManager.setCacheManager(redisCacheManager());
         return defaultWebSecurityManager;
     }
 
@@ -163,6 +167,41 @@ public class ShiroConfig {
         manager.setExpire(60 * 60);
         manager.setPassword(jedisPassword);
         return manager;
+    }
+
+    /**
+     * 缓存管理
+     */
+    @Bean("redisCacheManager")
+    public RedisCacheManager redisCacheManager(){
+        RedisCacheManager manager = new RedisCacheManager();
+        manager.setRedisManager(redisManager());
+        return manager;
+    }
+
+
+    /**
+     * Cookie 的缓存管理
+     */
+    @Bean
+    public CookieRememberMeManager cookieRememberMeManager(){
+        CookieRememberMeManager rememberMeManager = new CookieRememberMeManager();
+        rememberMeManager.setCookie(rememberMeCookie());
+        rememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
+        return rememberMeManager;
+    }
+
+    /**
+     *  Cookie 设置失效缓存时间
+     */
+    @Bean
+    public SimpleCookie rememberMeCookie(){
+        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+        SimpleCookie cookie = new SimpleCookie("rememberMe");
+        cookie.setHttpOnly(true);
+        //记住我有效期长达3天
+        cookie.setMaxAge(259200);
+        return cookie;
     }
 
 }

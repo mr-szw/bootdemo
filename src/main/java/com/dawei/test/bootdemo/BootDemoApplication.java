@@ -1,5 +1,6 @@
 package com.dawei.test.bootdemo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -10,6 +11,8 @@ import org.springframework.jms.annotation.EnableJms;
 //@EnableJms       //开启消息功能
 //@EnableCaching    //开启缓存功能
 @ComponentScan(value = "com.dawei.test.bootdemo")
+//扫描
+@MapperScan(basePackages = "com.dawei.test.bootdemo.mapper")
 public class BootDemoApplication {
 
 	public static void main(String[] args) {

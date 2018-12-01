@@ -1,5 +1,6 @@
 package com.dawei.test.bootdemo.service;
 
+import afu.org.checkerframework.checker.oigj.qual.O;
 import com.dawei.test.bootdemo.entity.UserInfo;
 
 import java.util.Map;
@@ -18,6 +19,9 @@ public interface UserInfoService {
     default Integer saveUser(UserInfo userInfo) {return 0;}
 
     default Integer updateUser(UserInfo userInfo) {return 0;}
+
+    default Map<String, Integer> selectAllUserMenuMap() {return null;}
+
 
     //void saveUserRoles(Long id,Set<Role> roleSet);
 /*

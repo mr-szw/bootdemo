@@ -21,6 +21,13 @@ public class MenuInfo {
 
     private String bgColor;
 
+    /* 排序顺序权重 */
+    private Integer sortNum;
+
+
+    /*  数据量 */
+    private Integer dataCount;
+
     public MenuInfo() {
     }
 
@@ -86,5 +93,21 @@ public class MenuInfo {
 
     public void setBgColor(String bgColor) {
         this.bgColor = bgColor;
+    }
+
+    public Integer getDataCount() {
+        return dataCount;
+    }
+
+    public void setDataCount(Integer dataCount) {
+        this.dataCount = dataCount;
+    }
+
+    public Integer getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(Integer sortNum) {
+        this.sortNum = sortNum;
     }
 }
