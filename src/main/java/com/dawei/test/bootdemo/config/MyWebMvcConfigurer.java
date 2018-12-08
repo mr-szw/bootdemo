@@ -1,6 +1,9 @@
 package com.dawei.test.bootdemo.config;
 
 import com.dawei.test.bootdemo.intercecptors.UserInfoInterceptor;
+import com.dawei.test.bootdemo.utils.XssBootFilter;
+import com.google.common.collect.Maps;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.MultipartConfigElement;
 import java.nio.charset.Charset;
+import java.util.Map;
 
 /**
  * @author by Dawei on 2018/7/18
@@ -68,6 +72,24 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/*/**");
+    }
+
+
+    /**
+     * xss过滤拦截器
+     */
+    @Bean
+    public FilterRegistrationBean xssFilterRegistrationBean() {
+        FilterRegistrationBean<XssBootFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new XssBootFilter());
+        filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.setEnabled(true);
+        filterRegistrationBean.addUrlPatterns("/*");
+        Map<String, String> initParameters = Maps.newHashMap();
+        initParameters.put("excludes", "/favicon.ico,/img/*,/js/*,/css/*");
+        initParameters.put("isIncludeRichText", "true");
+        filterRegistrationBean.setInitParameters(initParameters);
+        return filterRegistrationBean;
     }
 
 }
