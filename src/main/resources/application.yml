@@ -85,8 +85,8 @@ spring:
   # 数据源配置
   datasource:
     url:
-    username: daojia_root
-    password: aaa111
+    username:
+    password:
 
 
 #自定义配置属性
