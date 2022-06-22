@@ -37,6 +37,7 @@
 			<scope>test</scope>
 		</dependency>
 
+
         <!--   热部署  页面方面通过设置spring.thymeleaf.cache=false关闭缓存来实现    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
